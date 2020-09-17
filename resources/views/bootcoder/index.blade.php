@@ -37,14 +37,17 @@
                 <div class="col-2">Current group</div>
                 <div class="col-3">E-mail</div>
                 <div class="col-3">Action</div>
-            </div>   
+            </div>
+            @if ($bootcoders)   
                 @foreach($bootcoders as $bootcoder)
                 <div class="row my-row">
                     <div class="col-4">
                         <p>{{$bootcoder->first_name}} {{$bootcoder->last_name}}</p> 
                     </div>
                     <div class="col-2">
-                    <p>{{ $codersgroups[(($bootcoder->codersgroup_id)-1)]->groupname }}</p>
+                        @if ($bootcoder->codersgroup_id)
+                        <p>{{ $codersgroups[(($bootcoder->codersgroup_id)-1)]->groupname }}</p>
+                        @endif
                     </div>
                     <div class="col-3">
                         {{$bootcoder->email}}
@@ -60,7 +63,7 @@
                         <form action="{{route('bootcoder.update',$bootcoder->id)}}" method="POST">
                             @csrf
                             @method('update')
-                            <a href="{{Route('bootcoder.edit',$bootcoder->id)}}" class="btn btn-xs btn-primary">Edit</a>
+                            <a href="{{Route('bootcoder.edit',$bootcoder->id)}}" class="btn btn-xs btn-info">Edit</a>
                         </form>
                     </div>
                     <div class="col-1">
@@ -70,9 +73,9 @@
                             <input type="submit" value="Delete" class="btn btn-xs btn-danger">
                         </form>
                     </div>
-            </div>
-                @endforeach
-            
+                </div>
+                @endforeach            
+            @endif
         </div>
     </div>
 </div>

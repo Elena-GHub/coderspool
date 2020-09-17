@@ -19,6 +19,10 @@
         justify-content: center;
  
     }
+    .my-row > div {
+        padding: 1% .1% .02% 1%;
+        
+    }
     .my-row:nth-child(even){
         background: lightgray;
     }
@@ -41,17 +45,23 @@
                 <div class="col-2">
                     {{$codersgroup->groupname}}
                 </div>
-                <div class="col-8">
-                    
+                <div class="col-7">                    
                     @foreach ($codersgroup->bootcoders as $bootcoder)
-                    {{ $bootcoder->name }}
-                @endforeach
+                        {{ $bootcoder->first_name }} {{ $bootcoder->last_name }} <br>
+                    @endforeach
+                </div>
+                <div class="col-1">
+                    <form action="{{route('codersgroup.show',$codersgroup->id)}}" method="GET">
+                        @csrf
+                        @method('get')
+                        <a href="{{Route('codersgroup.show',$codersgroup->id)}}" class="btn btn-xs btn-secondary">Show</a>
+                    </form>
                 </div>
                 <div class="col-1">
                     <form action="{{route('codersgroup.update',$codersgroup->id)}}" method="POST">
                         @csrf
                         @method('update')
-                        <a href="{{Route('codersgroup.edit',$codersgroup->id)}}" class="btn btn-xs btn-secondary">Edit</a>
+                        <a href="{{Route('codersgroup.edit',$codersgroup->id)}}" class="btn btn-xs btn-info">Edit</a>
                     </form>
                 </div>
                 <div class="col-1">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Codersgroup;
+use App\Bootcoder;
 use Illuminate\Http\Request;
 
 class CodersgroupController extends Controller
@@ -10,7 +11,7 @@ class CodersgroupController extends Controller
     public function index()
     {
         $codersgroups = Codersgroup::all();
-        return view('codersgroup.index', ['codersgroups' => $codersgroups]);
+        return view('codersgroup.index', compact('codersgroups'));
     }
 
    public function create()
@@ -27,7 +28,8 @@ class CodersgroupController extends Controller
 
     public function show(Codersgroup $codersgroup)
     {
-        //
+        $bootcoders = Bootcoder::all();
+        return view('codersgroup.show', compact('codersgroup', 'bootcoders'));
     }
 
     public function edit(Codersgroup $codersgroup)
