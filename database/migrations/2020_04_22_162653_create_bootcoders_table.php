@@ -14,7 +14,7 @@ class CreateBootcodersTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('email');
             $table->foreignId('codersgroup_id')->nullable();
-            $table->foreign('codersgroup_id')->references('id')->on('codersgroups');
+            $table->foreign('codersgroup_id')->references('id')->on('codersgroups')->onDelete('cascade');
             $table->timestamps();
         });
     }

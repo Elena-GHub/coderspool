@@ -29,7 +29,8 @@ class BootcoderController extends Controller
 
    public function show(Bootcoder $bootcoder)
     {
-        //
+        $codersgroups = Codersgroup::all();
+        return view('bootcoder.show', compact('bootcoder', 'codersgroups'));
     }
 
     public function edit(Bootcoder $bootcoder)

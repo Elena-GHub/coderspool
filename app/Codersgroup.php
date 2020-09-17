@@ -13,5 +13,4 @@ class Codersgroup extends Model
     {
         return $this->hasMany(Bootcoder::class);
     }
-
 }

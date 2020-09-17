@@ -9,7 +9,7 @@ class Bootcoder extends Model
 {
     protected $fillable = ['first_name', 'last_name', 'email', 'codersgroup_id'];
     
-    public function Codersgroup()
+    public function codersgroup()
     {
         return $this->belongsTo(Codersgroup::class);
     }
