@@ -11,6 +11,3 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('bootcoder', 'BootcoderController');
 Route::resource('codersgroup', 'CodersgroupController');
-
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
