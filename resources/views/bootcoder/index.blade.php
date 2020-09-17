@@ -15,8 +15,9 @@
         color: whitesmoke;
         font-weight: bold;
     }
-    .my-row {
-        padding: .3%;
+    .my-row > div {
+        padding: 1% .1% .02% 1%;
+        
     }
     .my-row:nth-child(even){
         background: lightgray;
@@ -34,34 +35,41 @@
             <div class="row my-rowheader">
                 <div class="col-4">Full name</div>
                 <div class="col-2">Current group</div>
-                <div class="col-4">E-mail</div>
-                <div class="col-2">Action</div>
+                <div class="col-3">E-mail</div>
+                <div class="col-3">Action</div>
             </div>   
                 @foreach($bootcoders as $bootcoder)
                 <div class="row my-row">
-                <div class="col-4">
-                    {{$bootcoder->first_name}} {{$bootcoder->last_name}} 
-                </div>
-                <div class="col-2">
-                    {{$bootcoder->codersgroup_id}}
-                </div>
-                <div class="col-4">
-                    {{$bootcoder->email}}
-                </div>
-                <div class="col-1">
-                    <form action="{{route('bootcoder.update',$bootcoder->id)}}" method="POST">
-                        @csrf
-                        @method('update')
-                        <a href="{{Route('bootcoder.edit',$bootcoder->id)}}" class="btn btn-xs btn-secondary">Edit</a>
-                    </form>
-                </div>
-                <div class="col-1">
-                    <form action="{{route('bootcoder.destroy',$bootcoder->id)}}" method="POST">
-                        @csrf
-                        @method('delete')
-                        <input type="submit" value="Delete" class="btn btn-xs btn-danger">
-                    </form>
-                </div>
+                    <div class="col-4">
+                        <p>{{$bootcoder->first_name}} {{$bootcoder->last_name}}</p> 
+                    </div>
+                    <div class="col-2">
+                    <p>{{ $codersgroups[(($bootcoder->codersgroup_id)-1)]->groupname }}</p>
+                    </div>
+                    <div class="col-3">
+                        {{$bootcoder->email}}
+                    </div>
+                    <div class="col-1">
+                        <form action="{{route('bootcoder.show',$bootcoder->id)}}" method="GET">
+                            @csrf
+                            @method('get')
+                            <a href="{{Route('bootcoder.show',$bootcoder->id)}}" class="btn btn-xs btn-secondary">Show</a>
+                        </form>
+                    </div>
+                    <div class="col-1">
+                        <form action="{{route('bootcoder.update',$bootcoder->id)}}" method="POST">
+                            @csrf
+                            @method('update')
+                            <a href="{{Route('bootcoder.edit',$bootcoder->id)}}" class="btn btn-xs btn-primary">Edit</a>
+                        </form>
+                    </div>
+                    <div class="col-1">
+                        <form action="{{route('bootcoder.destroy',$bootcoder->id)}}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <input type="submit" value="Delete" class="btn btn-xs btn-danger">
+                        </form>
+                    </div>
             </div>
                 @endforeach
             
